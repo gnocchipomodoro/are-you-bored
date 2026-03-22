@@ -14,89 +14,54 @@
 
         h1 {
             font-size: 48px;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             color: #333;
         }
 
         button {
-            background-color: #e74c3c; /* Rosso */
+            background-color: #8e2b23; /* Rosso scuro */
             color: white;
-            padding: 20px 40px;
-            font-size: 20px;
-            border-radius: 50%; /* Cerchio */
+            width: 120px;
+            height: 120px; /* Cerchio perfetto */
+            font-size: 18px;
+            border-radius: 50%;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px #c0392b;
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px #6b1e1a; /* Ombra pulsante */
+            transition: transform 0.1s, box-shadow 0.1s;
         }
 
-        /* Effetto hover leggero */
         button:hover {
             transform: scale(1.1);
         }
 
-        /* Effetto quando clicchi (pressione reale) */
         button:active {
             transform: translateY(4px);
-            box-shadow: 0 2px #c0392b;
-        }
-
-        #activity {
-            margin-top: 30px;
-            font-size: 24px;
-            color: #555;
+            box-shadow: 0 2px #6b1e1a;
         }
     </style>
 </head>
 <body>
     <h1>Are you Bored?</h1>
-    <button onclick="suggestActivity()">Click me!</button>
-    <div id="activity"></div>
+    <button onclick="openGame()">Click me!</button>
 
     <script>
-        const activities = [
-            "Go for a walk outside 🌳",
-            "Try a new video game 🎮",
-            "Read an interesting book 📖",
-            "Listen to your favorite music 🎵",
-            "Write something creative ✍️",
-            "Learn something new online 💻",
-            "Do some exercise 🏋️",
-            "Draw a picture 🎨",
-            "Learn a new word in English 📝",
-            "Challenge a friend to a mini game 🕹️"
+        // Array di siti di gioco
+        const sites = [
+            "https://sudoku.com/eng",
+            "https://rocketgoal.io/",
+            "https://cardgames.io/solitaire/",
+            "http://slither.com/io",
+            "https://play2048.co/",
+            "https://paperio.site/",
+            "https://krunker.io/",
+            "https://dinosaur-game.io/"
         ];
 
-        function suggestActivity() {
-            const randomIndex = Math.floor(Math.random() * activities.length);
-            document.getElementById("activity").innerText = activities[randomIndex];
+        function openGame() {
+            const randomSite = sites[Math.floor(Math.random() * sites.length)];
+            window.open(randomSite, "_blank");
         }
-
-        // Background color animation
-        const colors = ["#ff9a9e", "#fad0c4", "#a1c4fd", "#c2e9fb", "#fbc2eb", "#a6c1ee"];
-        let colorIndex = 0;
-        setInterval(() => {
-            document.body.style.background = `linear-gradient(120deg, ${colors[colorIndex]}, ${colors[(colorIndex+1)%colors.length]})`;
-            colorIndex = (colorIndex + 1) % colors.length;
-        }, 4000);
-
-        // Auto-close after inactivity
-        let timeout = 15000; // 15 seconds
-        let timer = setTimeout(closePage, timeout);
-
-        function closePage() {
-            alert("The tab will close due to inactivity!");
-            window.close();
-        }
-
-        function resetTimer() {
-            clearTimeout(timer);
-            timer = setTimeout(closePage, timeout);
-        }
-
-        document.addEventListener("mousemove", resetTimer);
-        document.addEventListener("keydown", resetTimer);
-        document.addEventListener("click", resetTimer);
     </script>
 </body>
 </html>
