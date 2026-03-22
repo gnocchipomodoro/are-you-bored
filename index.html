@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are you Bored?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            transition: background 1s;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        #activity {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Are you Bored?</h1>
+    <button onclick="suggestActivity()">Click me!</button>
+    <div id="activity"></div>
+
+    <script>
+        const activities = [
+            "Fai una passeggiata all'aperto 🌳",
+            "Prova un nuovo gioco o videogioco 🎮",
+            "Leggi un libro interessante 📖",
+            "Ascolta la tua musica preferita 🎵",
+            "Scrivi qualcosa di creativo ✍️",
+            "Impara qualcosa di nuovo online 💻",
+            "Fai un po' di esercizio fisico 🏋️"
+        ];
+
+        function suggestActivity() {
+            const randomIndex = Math.floor(Math.random() * activities.length);
+            document.getElementById("activity").innerText = activities[randomIndex];
+        }
+
+        // Colori di sfondo che cambiano automaticamente
+        const colors = ["#ff9a9e", "#fad0c4", "#a1c4fd", "#c2e9fb", "#fbc2eb", "#a6c1ee"];
+        let colorIndex = 0;
+        setInterval(() => {
+            document.body.style.background = `linear-gradient(120deg, ${colors[colorIndex]}, ${colors[(colorIndex+1)%colors.length]})`;
+            colorIndex = (colorIndex + 1) % colors.length;
+        }, 4000);
+
+        // Chiusura automatica dopo inattività
+        let timeout = 15000; // 15 secondi
+        let timer = setTimeout(closePage, timeout);
+
+        function closePage() {
+            alert("La scheda si chiuderà per inattività!");
+            window.close();
+        }
+
+        function resetTimer() {
+            clearTimeout(timer);
+            timer = setTimeout(closePage, timeout);
+        }
+
+        document.addEventListener("mousemove", resetTimer);
+        document.addEventListener("keydown", resetTimer);
+        document.addEventListener("click", resetTimer);
+    </script>
+</body>
+</html>
