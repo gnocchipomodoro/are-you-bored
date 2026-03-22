@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,25 +13,32 @@
         }
 
         h1 {
-            color: #333;
             font-size: 48px;
             margin-bottom: 20px;
+            color: #333;
         }
 
         button {
-            background-color: #4CAF50;
-            border: none;
+            background-color: #e74c3c; /* Rosso */
             color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 12px;
+            padding: 20px 40px;
+            font-size: 20px;
+            border-radius: 50%; /* Cerchio */
+            border: none;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
+            box-shadow: 0 5px #c0392b;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
+        /* Effetto hover leggero */
         button:hover {
-            background-color: #45a049;
             transform: scale(1.1);
+        }
+
+        /* Effetto quando clicchi (pressione reale) */
+        button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px #c0392b;
         }
 
         #activity {
@@ -48,13 +55,16 @@
 
     <script>
         const activities = [
-            "Take a walk outside 🌳",
-            "Try a new game or video game 🎮",
+            "Go for a walk outside 🌳",
+            "Try a new video game 🎮",
             "Read an interesting book 📖",
             "Listen to your favorite music 🎵",
             "Write something creative ✍️",
             "Learn something new online 💻",
-            "Get some exercise 🏋️"
+            "Do some exercise 🏋️",
+            "Draw a picture 🎨",
+            "Learn a new word in English 📝",
+            "Challenge a friend to a mini game 🕹️"
         ];
 
         function suggestActivity() {
@@ -62,7 +72,7 @@
             document.getElementById("activity").innerText = activities[randomIndex];
         }
 
-        // Colori di sfondo che cambiano automaticamente
+        // Background color animation
         const colors = ["#ff9a9e", "#fad0c4", "#a1c4fd", "#c2e9fb", "#fbc2eb", "#a6c1ee"];
         let colorIndex = 0;
         setInterval(() => {
@@ -70,12 +80,12 @@
             colorIndex = (colorIndex + 1) % colors.length;
         }, 4000);
 
-        // Chiusura automatica dopo inattività
-        let timeout = 15000; // 15 secondi
+        // Auto-close after inactivity
+        let timeout = 15000; // 15 seconds
         let timer = setTimeout(closePage, timeout);
 
         function closePage() {
-            alert("La scheda si chiuderà per inattività!");
+            alert("The tab will close due to inactivity!");
             window.close();
         }
 
